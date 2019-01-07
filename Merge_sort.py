@@ -188,16 +188,16 @@ __kernel void cpy(__global int *out,__global const int *in, int size)
       {
         i = (indx + size) + (((indx + (size * 2)) > *len) ? *len - (indx + size) : size);
         
-        barrier(CLK_LOCAL_MEM_FENCE);
+        
      
         merge(&a[indx], size, &a[indx + size], ((indx + (size * 2)) > *len) ? *len - (indx + size) : size, &b[indx]);
        
-        barrier(CLK_LOCAL_MEM_FENCE);
+      
         
       } 
       else 
       {
-        barrier(CLK_LOCAL_MEM_FENCE);
+       
 
         return;
 
@@ -207,7 +207,7 @@ __kernel void cpy(__global int *out,__global const int *in, int size)
       
      
       if(size>*len)
-      {barrier(CLK_LOCAL_MEM_FENCE);
+      {
         
         break;
       }
@@ -216,7 +216,7 @@ __kernel void cpy(__global int *out,__global const int *in, int size)
       
       if(indx%(2*size) != 0) 
       {
-        barrier(CLK_LOCAL_MEM_FENCE);
+        
         return;
         
       }
